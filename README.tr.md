@@ -41,7 +41,7 @@ curl -X POST https://api.pushizo.com/v1/notifications \
     "target": { "test_devices_only": true },
     "headings": { "tr": "Merhaba", "en": "Hello" },
     "contents": { "tr": "Pushizo çalışıyor", "en": "Pushizo is working" },
-    "url": "https://example.com"
+    "url": "https://pushizo.com"
   }'
 # 202 → { "id": "msg_…", "status": "queued", "recipients_estimate": 1, "external_id_missing": [] }
 ```

@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Pushizo API",
-    "description": "Public REST ve SDK API'si (1.0.0). OpenAPI'den üretilmiştir: npm run postman:gen",
+    "description": "Public REST ve SDK API'si (1.1.0). OpenAPI'den üretilmiştir: npm run postman:gen",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "auth": {
@@ -906,7 +906,7 @@
             "description": "Bütçe uyarı kuralı oluştur",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"kind\": \"daily_spend\",\n  \"ad_account_id\": \"string\",\n  \"campaign_external_id\": \"string\",\n  \"threshold\": 1,\n  \"window_days\": 1,\n  \"recipients\": [\n    \"user@example.com\"\n  ],\n  \"enabled\": true\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"kind\": \"daily_spend\",\n  \"ad_account_id\": \"string\",\n  \"campaign_external_id\": \"string\",\n  \"threshold\": 1,\n  \"window_days\": 1,\n  \"recipients\": [\n    \"user@pushizo.com\"\n  ],\n  \"enabled\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -954,7 +954,7 @@
             "description": "Bütçe uyarı kuralını güncelle",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"ad_account_id\": \"string\",\n  \"campaign_external_id\": \"string\",\n  \"threshold\": 1,\n  \"window_days\": 1,\n  \"recipients\": [\n    \"user@example.com\"\n  ],\n  \"enabled\": true\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"ad_account_id\": \"string\",\n  \"campaign_external_id\": \"string\",\n  \"threshold\": 1,\n  \"window_days\": 1,\n  \"recipients\": [\n    \"user@pushizo.com\"\n  ],\n  \"enabled\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1044,6 +1044,1130 @@
     {
       "name": "analytics",
       "item": [
+        {
+          "name": "RFM modeli",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "RFM modeli"
+          },
+          "response": []
+        },
+        {
+          "name": "RFM modelini ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "RFM modelini ayarla\n\nModel açıksa skorlar kayıttan sonra yeniden hesaplanır.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"event_names\": [\n    \"string\"\n  ],\n  \"value_property\": \"string\",\n  \"use_monetary\": true,\n  \"window_days\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Skorları yeniden hesapla",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/compute",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "compute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Skorları yeniden hesapla\n\nİş kuyruğa alınır; ilerleme `status` alanından izlenir."
+          },
+          "response": []
+        },
+        {
+          "name": "Segment dağılımı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/overview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "overview"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Segment dağılımı"
+          },
+          "response": []
+        },
+        {
+          "name": "İki tarih arası segment geçişleri",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/transitions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "transitions"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "İki tarih arası segment geçişleri"
+          },
+          "response": []
+        },
+        {
+          "name": "Skoru olan kullanıcılar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/rfm/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "rfm",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "segment",
+                  "value": "champions",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "Skoru olan kullanıcılar"
+          },
+          "response": []
+        },
+        {
+          "name": "İlgi modeli",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/affinity/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "affinity",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "İlgi modeli"
+          },
+          "response": []
+        },
+        {
+          "name": "İlgi modelini ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/affinity/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "affinity",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "İlgi modelini ayarla\n\nModel açıksa ilgiler kayıttan sonra yeniden hesaplanır.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"attributes\": [\n    \"string\"\n  ],\n  \"events\": {},\n  \"window_days\": 7,\n  \"half_life_days\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "İlgileri yeniden hesapla",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/affinity/compute",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "affinity",
+                "compute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "İlgileri yeniden hesapla"
+          },
+          "response": []
+        },
+        {
+          "name": "Özellik başına en yaygın ilgiler",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/affinity/overview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "affinity",
+                "overview"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Özellik başına en yaygın ilgiler"
+          },
+          "response": []
+        },
+        {
+          "name": "Kişinin ilgileri ve haftalık sıklık sınırı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/affinity/users/:userId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "affinity",
+                "users",
+                ":userId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kişinin ilgileri ve haftalık sıklık sınırı"
+          },
+          "response": []
+        },
+        {
+          "name": "Kanal skoru ayarı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kanal skoru ayarı"
+          },
+          "response": []
+        },
+        {
+          "name": "Kanal skorunu ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kanal skorunu ayarla\n\nAçıkken skorlar kayıttan sonra yeniden hesaplanır; kapatınca silinir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"window_days\": 7,\n  \"min_sends\": 1,\n  \"count_email_opens\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kanal skorlarını yeniden hesapla",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/compute",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "compute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kanal skorlarını yeniden hesapla\n\nİş kuyruğa alınır; ilerleme `status` alanından izlenir."
+          },
+          "response": []
+        },
+        {
+          "name": "En iyi kanal dağılımı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/overview",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "overview"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "En iyi kanal dağılımı"
+          },
+          "response": []
+        },
+        {
+          "name": "En iyi kanalı belli kullanıcılar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "channel",
+                  "value": "push",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "En iyi kanalı belli kullanıcılar"
+          },
+          "response": []
+        },
+        {
+          "name": "Kullanıcının kanal skorları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/channel-scores/users/:userId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "channel-scores",
+                "users",
+                ":userId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kullanıcının kanal skorları"
+          },
+          "response": []
+        },
+        {
+          "name": "Öngörü modelleri",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Öngörü modelleri"
+          },
+          "response": []
+        },
+        {
+          "name": "Öngörü modeli oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Öngörü modeli oluştur\n\nEğitim kuyruğa alınır; sonuç `outcome` alanından izlenir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"string\",\n  \"name\": \"string\",\n  \"kind\": \"churn\",\n  \"event_names\": [],\n  \"horizon_days\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Öngörü modeli",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Öngörü modeli"
+          },
+          "response": []
+        },
+        {
+          "name": "Öngörü modelini güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Öngörü modelini güncelle\n\nOlay veya ufuk değişirse yeniden eğitilir; kapatınca skorlar silinir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"enabled\": true,\n  \"event_names\": [\n    \"string\"\n  ],\n  \"horizon_days\": 7\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Öngörü modelini sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Öngörü modelini sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Modeli yeniden eğit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions/:id/compute",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions",
+                ":id",
+                "compute"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Modeli yeniden eğit"
+          },
+          "response": []
+        },
+        {
+          "name": "Skoru olan kullanıcılar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/predictions/:id/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "predictions",
+                ":id",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "bucket",
+                  "value": "low",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Skoru olan kullanıcılar"
+          },
+          "response": []
+        },
+        {
+          "name": "Karar ajanları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Karar ajanları"
+          },
+          "response": []
+        },
+        {
+          "name": "Karar ajanı oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Karar ajanı oluştur",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"string\",\n  \"name\": \"string\",\n  \"arms\": [\n    {\n      \"id\": \"string\",\n      \"label\": \"string\"\n    }\n  ],\n  \"reward_events\": [\n    \"string\"\n  ],\n  \"reward_window_hours\": 72,\n  \"holdout_percent\": 10,\n  \"context_prediction\": \"string\",\n  \"use_best_channel\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Karar ajanı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Karar ajanı"
+          },
+          "response": []
+        },
+        {
+          "name": "Karar ajanını güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Karar ajanını güncelle\n\nSeçenekler değiştirilemez: geçmiş öğrenme onlara bağlıdır. Yeni seçenekler için yeni ajan oluşturun.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"status\": \"active\",\n  \"reward_events\": [\n    \"string\"\n  ],\n  \"reward_window_hours\": 1,\n  \"holdout_percent\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Karar ajanını sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Karar ajanını sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Kazanç raporu",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents/:id/report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents",
+                ":id",
+                "report"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kazanç raporu\n\nÖğrenen politika ve kontrol grubu karşılaştırması."
+          },
+          "response": []
+        },
+        {
+          "name": "Kullanıcı için karar al",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/decision-agents/:id/decide",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "decision-agents",
+                ":id",
+                "decide"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kullanıcı için karar al\n\nKarar kaydedilir, ödül olayı geldikçe ajan öğrenir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
         {
           "name": "Genel bakış KPI",
           "request": {
@@ -1195,6 +2319,56 @@
           "response": []
         },
         {
+          "name": "Uygulama kaldırma raporu",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/uninstalls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "uninstalls"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2026-01-01T09:00:00Z",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "2026-01-01T09:00:00Z",
+                  "disabled": true
+                },
+                {
+                  "key": "compare",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "json",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "Uygulama kaldırma raporu\n\nMobil push sağlayıcısının \"cihaz kayıtlı değil\" yanıtından sayılır."
+          },
+          "response": []
+        },
+        {
           "name": "Olay hacmi",
           "request": {
             "method": "GET",
@@ -1306,6 +2480,91 @@
               "variable": []
             },
             "description": "Dönüşüm/atribüsyon"
+          },
+          "response": []
+        },
+        {
+          "name": "Rapor çalıştır",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports",
+                "run"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Rapor çalıştır\n\nKaynak, metrik, boyut ve filtre seçilerek rapor üretir; alanlar izinli listeyle sınırlıdır.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"deliveries\",\n  \"metrics\": [\n    \"sent\"\n  ],\n  \"dimensions\": [],\n  \"filters\": {},\n  \"sort\": {\n    \"by\": \"string\"\n  },\n  \"limit\": 100,\n  \"days\": 1,\n  \"from\": \"2026-01-01T09:00:00Z\",\n  \"to\": \"2026-01-01T09:00:00Z\",\n  \"format\": \"json\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Yol analizi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/paths",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "paths"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Yol analizi\n\nBaşlangıç olayından sonra veya önce kullanıcıların izlediği yollar.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"string\",\n  \"direction\": \"after\",\n  \"depth\": 3,\n  \"top\": 5,\n  \"window_hours\": 24,\n  \"exclude\": [],\n  \"from\": \"2026-01-01T09:00:00Z\",\n  \"to\": \"2026-01-01T09:00:00Z\",\n  \"format\": \"json\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": []
         },
@@ -1488,6 +2747,333 @@
               "variable": []
             },
             "description": "Etkileşim ısı haritası"
+          },
+          "response": []
+        },
+        {
+          "name": "Genel kontrol grubu ayarı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/global-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "global-control"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Genel kontrol grubu ayarı"
+          },
+          "response": []
+        },
+        {
+          "name": "Genel kontrol grubunu ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/global-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "global-control"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Genel kontrol grubunu ayarla\n\nGruptaki kullanıcılar kampanya, otomasyon ve uygulama içi mesajları almaz. API ve işlemsel gönderimler etkilenmez.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"percent\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Grubu yeniden kur (üyelik değişir, ölçüm baştan başlar)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/global-control/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "global-control",
+                "reset"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Grubu yeniden kur (üyelik değişir, ölçüm baştan başlar)"
+          },
+          "response": []
+        },
+        {
+          "name": "Kontrol ve mesaj alan grubun dönüşüm karşılaştırması",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/global-control/report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "global-control",
+                "report"
+              ],
+              "query": [
+                {
+                  "key": "days",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "event",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "Kontrol ve mesaj alan grubun dönüşüm karşılaştırması"
+          },
+          "response": []
+        },
+        {
+          "name": "Kaydedilmiş raporlar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kaydedilmiş raporlar"
+          },
+          "response": []
+        },
+        {
+          "name": "Raporu kaydet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Raporu kaydet",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"definition\": {\n    \"source\": \"deliveries\",\n    \"metrics\": [\n      \"sent\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kaydedilmiş rapor",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kaydedilmiş rapor"
+          },
+          "response": []
+        },
+        {
+          "name": "Raporu güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Raporu güncelle",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"definition\": {\n    \"source\": \"deliveries\",\n    \"metrics\": [\n      \"sent\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Raporu sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/analytics/reports/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "analytics",
+                "reports",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Raporu sil"
           },
           "response": []
         }
@@ -1924,7 +3510,7 @@
             "description": "App ayarlarını güncelle",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"platform_flags\": {},\n  \"icon_url\": \"https://example.com\",\n  \"default_language\": \"string\",\n  \"timezone\": \"string\",\n  \"settings\": {},\n  \"identity_verification_mode\": \"hmac\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"platform_flags\": {},\n  \"icon_url\": \"https://pushizo.com\",\n  \"default_language\": \"string\",\n  \"timezone\": \"string\",\n  \"settings\": {},\n  \"identity_verification_mode\": \"hmac\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2034,7 +3620,7 @@
             "description": "Kampanya oluştur",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"goals\": {\n    \"primary\": \"string\",\n    \"secondary\": [\n      \"string\"\n    ]\n  },\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"frequency_priority\": \"low\",\n    \"global_control_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2115,7 +3701,7 @@
             "description": "Kampanya güncelle",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"goals\": {\n    \"primary\": \"string\",\n    \"secondary\": [\n      \"string\"\n    ]\n  },\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"frequency_priority\": \"low\",\n    \"global_control_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2160,7 +3746,7 @@
           "response": []
         },
         {
-          "name": "Zamanla",
+          "name": "Zamanla; e-posta liste koruması 409 → force=true (admin kapsamı)",
           "request": {
             "method": "POST",
             "header": [
@@ -2186,7 +3772,13 @@
                 ":campaignId",
                 "schedule"
               ],
-              "query": [],
+              "query": [
+                {
+                  "key": "force",
+                  "value": "true",
+                  "disabled": true
+                }
+              ],
               "variable": [
                 {
                   "key": "campaignId",
@@ -2194,7 +3786,7 @@
                 }
               ]
             },
-            "description": "Zamanla",
+            "description": "Zamanla; e-posta liste koruması 409 → force=true (admin kapsamı)",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"send_at\": \"2026-01-01T09:00:00Z\",\n  \"recurrence\": {\n    \"cron\": \"string\"\n  }\n}",
@@ -2208,7 +3800,7 @@
           "response": []
         },
         {
-          "name": "Hemen gönder",
+          "name": "Hemen gönder; e-posta liste koruması 409 → force=true (admin kapsamı)",
           "request": {
             "method": "POST",
             "header": [
@@ -2230,6 +3822,47 @@
                 ":campaignId",
                 "send"
               ],
+              "query": [
+                {
+                  "key": "force",
+                  "value": "true",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "campaignId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Hemen gönder; e-posta liste koruması 409 → force=true (admin kapsamı)"
+          },
+          "response": []
+        },
+        {
+          "name": "E-posta liste riski (tahmini geçersiz oranı, 7/30 gün bounce oranı)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/campaigns/:campaignId/email-risk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "campaigns",
+                ":campaignId",
+                "email-risk"
+              ],
               "query": [],
               "variable": [
                 {
@@ -2238,7 +3871,7 @@
                 }
               ]
             },
-            "description": "Hemen gönder"
+            "description": "E-posta liste riski (tahmini geçersiz oranı, 7/30 gün bounce oranı)"
           },
           "response": []
         },
@@ -2732,7 +4365,7 @@
             "description": "Kimlik bilgisi yükle (APNs p8, FCM servis hesabı, VAPID, mock)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"provider\": \"string\",\n  \"key_id\": \"string\",\n  \"team_id\": \"string\",\n  \"bundle_id\": \"string\",\n  \"environment\": \"sandbox\",\n  \"p8\": \"string\",\n  \"p12\": \"string\",\n  \"p12_password\": \"string\"\n}",
+              "raw": "{\n  \"provider\": \"string\",\n  \"key_id\": \"string\",\n  \"team_id\": \"string\",\n  \"bundle_id\": \"string\",\n  \"app_clip_bundle_id\": \"string\",\n  \"environment\": \"sandbox\",\n  \"p8\": \"string\",\n  \"p12\": \"string\",\n  \"p12_password\": \"string\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3905,6 +5538,872 @@
             "description": "İçerik tablosunu yeniden yükle (sürüm artar)"
           },
           "response": []
+        },
+        {
+          "name": "Promosyon kodu listeleri",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Promosyon kodu listeleri"
+          },
+          "response": []
+        },
+        {
+          "name": "Promosyon kodu listesi oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Promosyon kodu listesi oluştur\n\nŞablonda `{% promo_code '<ad>' %}` teslimat başına tek kullanımlık kod verir. Kod kalmazsa teslimat `PromoCodeUnavailable` hatasıyla düşer.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"expires_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promosyon kodu listesi ayrıntısı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists/:listId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists",
+                ":listId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "listId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Promosyon kodu listesi ayrıntısı"
+          },
+          "response": []
+        },
+        {
+          "name": "Promosyon kodu listesini güncelle (açıklama, son kullanma)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists/:listId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists",
+                ":listId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "listId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Promosyon kodu listesini güncelle (açıklama, son kullanma)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"string\",\n  \"expires_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promosyon kodu listesini sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists/:listId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists",
+                ":listId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "listId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Promosyon kodu listesini sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Listedeki kodlar ve atamaları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists/:listId/codes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists",
+                ":listId",
+                "codes"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "available",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "listId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Listedeki kodlar ve atamaları"
+          },
+          "response": []
+        },
+        {
+          "name": "CSV ile kod ekle (zaten olanlar atlanır)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/promo-code-lists/:listId/codes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "promo-code-lists",
+                ":listId",
+                "codes"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "listId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "CSV ile kod ekle (zaten olanlar atlanır)"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürün katalogları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Ürün katalogları"
+          },
+          "response": []
+        },
+        {
+          "name": "Katalog oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Katalog oluştur\n\nŞablonda `{% catalog_item '<ad>' id: custom_data.product_id as urun %}{{ urun.title }}`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"currency\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Katalog ayrıntısı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Katalog ayrıntısı"
+          },
+          "response": []
+        },
+        {
+          "name": "Kataloğu güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kataloğu güncelle",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"string\",\n  \"currency\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kataloğu sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kataloğu sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürünler",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "items"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Ürünler"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürünleri ekle veya güncelle (en fazla 1000)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "items"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Ürünleri ekle veya güncelle (en fazla 1000)\n\nListede olmayan ürünlere dokunulmaz. Listedeki ürünün verilmeyen alanları temizlenir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CSV ile ürün ekle veya güncelle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/items/upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "items",
+                "upload"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "CSV ile ürün ekle veya güncelle"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürün ayrıntısı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/items/:itemId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "items",
+                ":itemId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                },
+                {
+                  "key": "itemId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Ürün ayrıntısı"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürünü sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/items/:itemId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "items",
+                ":itemId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                },
+                {
+                  "key": "itemId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Ürünü sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Ürün önerileri",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/recommendations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "recommendations"
+              ],
+              "query": [
+                {
+                  "key": "strategy",
+                  "value": "personalized",
+                  "disabled": false
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "user_id",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "external_id",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "item_id",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Ürün önerileri\n\nStokta olmayan ve kullanıcının satın aldığı ürünler çıkmaz. Sonuç yetmezse yedek kaynakla tamamlanır."
+          },
+          "response": []
+        },
+        {
+          "name": "Öneri modeli",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/recommendations/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "recommendations",
+                "config"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Öneri modeli"
+          },
+          "response": []
+        },
+        {
+          "name": "Öneri modelini ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/recommendations/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "recommendations",
+                "config"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Öneri modelini ayarla\n\nModel açıksa öneriler kayıttan sonra yeniden hesaplanır.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"view_events\": [\n    \"string\"\n  ],\n  \"purchase_events\": [\n    \"string\"\n  ],\n  \"item_property\": \"string\",\n  \"window_days\": 7\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Önerileri yeniden hesapla",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/catalogs/:catalogId/recommendations/compute",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "catalogs",
+                ":catalogId",
+                "recommendations",
+                "compute"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "catalogId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Önerileri yeniden hesapla\n\nİş kuyruğa alınır; ilerleme `status` alanından izlenir."
+          },
+          "response": []
         }
       ]
     },
@@ -3970,7 +6469,7 @@
             "description": "E-posta teslim ayarlarını güncelle (doğrulayıcı anahtarı zarf şifreli saklanır, geri okunmaz)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"bcc_address\": \"user@example.com\",\n  \"validation\": {\n    \"enabled\": true\n  },\n  \"verifier\": {\n    \"provider\": \"zerobounce\"\n  }\n}",
+              "raw": "{\n  \"bcc_address\": \"user@pushizo.com\",\n  \"validation\": {\n    \"enabled\": true\n  },\n  \"verifier\": {\n    \"provider\": \"zerobounce\"\n  },\n  \"volume_spike\": {\n    \"multiplier\": 2,\n    \"floor\": 1\n  },\n  \"max_invalid_ratio\": 0.005,\n  \"postmaster\": {\n    \"domain\": \"string\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4250,6 +6749,65 @@
               ]
             },
             "description": "Isındırma planı gün × sağlayıcı kullanımı"
+          },
+          "response": []
+        },
+        {
+          "name": "Google Postmaster itibar kayıtları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/email-deliverability/postmaster",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "email-deliverability",
+                "postmaster"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Google Postmaster itibar kayıtları"
+          },
+          "response": []
+        },
+        {
+          "name": "Google Postmaster dünkü itibarını oku",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/email-deliverability/postmaster/sync",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "email-deliverability",
+                "postmaster",
+                "sync"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Google Postmaster dünkü itibarını oku"
           },
           "response": []
         }
@@ -4598,6 +7156,237 @@
               ]
             },
             "description": "Import durumu"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "feature-flags",
+      "item": [
+        {
+          "name": "Özellik bayrakları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Özellik bayrakları"
+          },
+          "response": []
+        },
+        {
+          "name": "Bayrak oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Bayrak oluştur\n\nDeğerler uygulama kimliğini bilen herkesçe okunabilir; gizli bilgi yazmayın.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": true,\n  \"value_type\": \"boolean\",\n  \"on_value\": true,\n  \"off_value\": true,\n  \"rollout_percent\": 0,\n  \"segment_id\": \"string\",\n  \"rollout_schedule\": [\n    {\n      \"at\": \"2026-01-01T09:00:00Z\",\n      \"percent\": 0\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bayrakları bir kullanıcı için değerlendir",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags/evaluate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags",
+                "evaluate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Bayrakları bir kullanıcı için değerlendir",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"string\",\n  \"user_id\": \"string\",\n  \"subject\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bayrak ayrıntısı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags/:flagId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags",
+                ":flagId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "flagId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bayrak ayrıntısı"
+          },
+          "response": []
+        },
+        {
+          "name": "Bayrağı güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags/:flagId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags",
+                ":flagId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "flagId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bayrağı güncelle",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": true,\n  \"value_type\": \"boolean\",\n  \"on_value\": true,\n  \"off_value\": true,\n  \"rollout_percent\": 0,\n  \"segment_id\": \"string\",\n  \"rollout_schedule\": [\n    {\n      \"at\": \"2026-01-01T09:00:00Z\",\n      \"percent\": 0\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bayrağı sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/feature-flags/:flagId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags",
+                ":flagId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "flagId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bayrağı sil"
           },
           "response": []
         }
@@ -5017,7 +7806,7 @@
             "description": "In-app mesaj oluştur (taslak)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"triggers\": [\n    {\n      \"kind\": \"string\"\n    }\n  ],\n  \"trigger_groups\": [\n    [\n      {\n        \"kind\": \"string\"\n      }\n    ]\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"weight_percent\": 1,\n      \"display\": {\n        \"layout\": \"modal\",\n        \"blocks\": []\n      }\n    }\n  ],\n  \"ab_test\": {},\n  \"display\": {\n    \"layout\": \"modal\",\n    \"blocks\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"audience\": {},\n  \"frequency\": {},\n  \"journey_only\": true,\n  \"priority\": 0,\n  \"start_at\": \"2026-01-01T09:00:00Z\",\n  \"end_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"triggers\": [\n    {\n      \"kind\": \"string\"\n    }\n  ],\n  \"trigger_groups\": [\n    [\n      {\n        \"kind\": \"string\"\n      }\n    ]\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"weight_percent\": 1,\n      \"display\": {\n        \"layout\": \"modal\",\n        \"blocks\": []\n      }\n    }\n  ],\n  \"ab_test\": {},\n  \"display\": {\n    \"layout\": \"modal\",\n    \"blocks\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"audience\": {},\n  \"frequency\": {},\n  \"journey_only\": true,\n  \"placement\": \"string\",\n  \"priority\": 0,\n  \"start_at\": \"2026-01-01T09:00:00Z\",\n  \"end_at\": \"2026-01-01T09:00:00Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -5098,7 +7887,7 @@
             "description": "In-app mesajı düzenle",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"triggers\": [\n    {\n      \"kind\": \"string\"\n    }\n  ],\n  \"trigger_groups\": [\n    [\n      {\n        \"kind\": \"string\"\n      }\n    ]\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"weight_percent\": 1,\n      \"display\": {\n        \"layout\": \"modal\",\n        \"blocks\": []\n      }\n    }\n  ],\n  \"ab_test\": {},\n  \"display\": {\n    \"layout\": \"modal\",\n    \"blocks\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"audience\": {},\n  \"frequency\": {},\n  \"journey_only\": true,\n  \"priority\": 0,\n  \"start_at\": \"2026-01-01T09:00:00Z\",\n  \"end_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"triggers\": [\n    {\n      \"kind\": \"string\"\n    }\n  ],\n  \"trigger_groups\": [\n    [\n      {\n        \"kind\": \"string\"\n      }\n    ]\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"weight_percent\": 1,\n      \"display\": {\n        \"layout\": \"modal\",\n        \"blocks\": []\n      }\n    }\n  ],\n  \"ab_test\": {},\n  \"display\": {\n    \"layout\": \"modal\",\n    \"blocks\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"audience\": {},\n  \"frequency\": {},\n  \"journey_only\": true,\n  \"placement\": \"string\",\n  \"priority\": 0,\n  \"start_at\": \"2026-01-01T09:00:00Z\",\n  \"end_at\": \"2026-01-01T09:00:00Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -6267,6 +9056,47 @@
           "response": []
         },
         {
+          "name": "Eski sürümü yeni taslak olarak geri yükle (yayındaki sürüm değişmez)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/journeys/:journeyId/versions/:version/restore",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "journeys",
+                ":journeyId",
+                "versions",
+                ":version",
+                "restore"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "journeyId",
+                  "value": "string"
+                },
+                {
+                  "key": "version",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Eski sürümü yeni taslak olarak geri yükle (yayındaki sürüm değişmez)"
+          },
+          "response": []
+        },
+        {
           "name": "Yayınla",
           "request": {
             "method": "POST",
@@ -7210,7 +10040,7 @@
             "description": "Kampanya taslağı oluştur (MCP onaylı mod; gönderim yapmaz)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"type\": \"one_time\",\n  \"audience\": {\n    \"all\": true,\n    \"segments\": [\n      \"string\"\n    ],\n    \"exclude_segments\": [\n      \"string\"\n    ],\n    \"filters\": {},\n    \"channels\": [\n      \"ios_push\"\n    ],\n    \"test_devices_only\": true\n  },\n  \"content\": {},\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"goals\": {\n    \"primary\": \"string\",\n    \"secondary\": [\n      \"string\"\n    ]\n  },\n  \"ab_test\": {\n    \"enabled\": true,\n    \"test_percentage\": 1,\n    \"winner\": {}\n  },\n  \"variants\": [\n    {\n      \"name\": \"string\",\n      \"weight_percent\": 1\n    }\n  ],\n  \"template_id\": \"string\",\n  \"template_version\": 1,\n  \"delivery\": {\n    \"timezone_mode\": \"immediate\",\n    \"delivery_time_of_day\": \"string\",\n    \"throttle_per_minute\": 1,\n    \"ttl\": 1,\n    \"priority\": 5,\n    \"collapse_id\": \"string\",\n    \"frequency_cap_exempt\": true,\n    \"frequency_priority\": \"low\",\n    \"global_control_exempt\": true,\n    \"quiet_hours_exempt\": true,\n    \"one_per_user\": true\n  },\n  \"recurrence\": {\n    \"cron\": \"string\",\n    \"until\": \"2026-01-01T09:00:00Z\",\n    \"timezone\": \"string\"\n  },\n  \"send_at\": \"2026-01-01T09:00:00Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -7253,6 +10083,174 @@
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"definition\": {\n    \"all\": [\n      {}\n    ],\n    \"any\": [\n      {}\n    ],\n    \"none\": [\n      {}\n    ]\n  },\n  \"is_dynamic\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Şablon oluştur (MCP onaylı mod; şablon tek başına gönderim yapmaz)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/mcp/template-drafts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "mcp",
+                "template-drafts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Şablon oluştur (MCP onaylı mod; şablon tek başına gönderim yapmaz)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"channel\": \"ios_push\",\n  \"tags\": [\n    \"string\"\n  ],\n  \"content\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Journey taslağı oluştur (MCP onaylı mod; yayımlanmaz)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/mcp/journey-drafts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "mcp",
+                "journey-drafts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Journey taslağı oluştur (MCP onaylı mod; yayımlanmaz)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"graph\": {\n    \"nodes\": [\n      {}\n    ],\n    \"edges\": [\n      {}\n    ]\n  },\n  \"settings\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "In-app mesaj taslağı oluştur (MCP onaylı mod; etkinleştirilmez)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/mcp/in-app-drafts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "mcp",
+                "in-app-drafts"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "In-app mesaj taslağı oluştur (MCP onaylı mod; etkinleştirilmez)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"triggers\": [\n    {\n      \"kind\": \"string\"\n    }\n  ],\n  \"trigger_groups\": [\n    [\n      {\n        \"kind\": \"string\"\n      }\n    ]\n  ],\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"weight_percent\": 1,\n      \"display\": {\n        \"layout\": \"modal\",\n        \"blocks\": []\n      }\n    }\n  ],\n  \"ab_test\": {},\n  \"display\": {\n    \"layout\": \"modal\",\n    \"blocks\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"audience\": {},\n  \"frequency\": {},\n  \"journey_only\": true,\n  \"placement\": \"string\",\n  \"priority\": 0,\n  \"start_at\": \"2026-01-01T09:00:00Z\",\n  \"end_at\": \"2026-01-01T09:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test gönderimi (yalnızca app’in test cihazlarına; MCP onaylı mod)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/mcp/test-sends",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "mcp",
+                "test-sends"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Test gönderimi (yalnızca app’in test cihazlarına; MCP onaylı mod)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_ids\": [\n    \"string\"\n  ],\n  \"headings\": {},\n  \"contents\": {},\n  \"url\": \"string\",\n  \"data\": {}\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -7363,7 +10361,7 @@
             "description": "Bildirim oluştur (202, asenkron teslimat)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"app_id\": \"string\",\n  \"idempotency_key\": \"string\",\n  \"target\": {},\n  \"headings\": {},\n  \"contents\": {},\n  \"subtitle\": {},\n  \"url\": \"string\",\n  \"app_url\": \"string\",\n  \"data\": {},\n  \"buttons\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"big_picture\": \"string\",\n  \"ios_attachments\": {},\n  \"ios_sound\": \"string\",\n  \"ios_badge_type\": \"None\",\n  \"ios_badge_count\": 0,\n  \"ios_interruption_level\": \"passive\",\n  \"ios_category\": \"string\",\n  \"thread_id\": \"string\",\n  \"ios_relevance_score\": 0,\n  \"target_content_identifier\": \"string\",\n  \"android_channel_id\": \"string\",\n  \"android_group\": \"string\",\n  \"android_sound\": \"string\",\n  \"small_icon\": \"string\",\n  \"large_icon\": \"string\",\n  \"android_accent_color\": \"string\",\n  \"android_visibility\": 1,\n  \"chrome_web_icon\": \"string\",\n  \"chrome_web_image\": \"string\",\n  \"chrome_web_badge\": \"string\",\n  \"web_push_topic\": \"string\",\n  \"web_buttons\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"require_interaction\": true,\n  \"content_available\": true,\n  \"mutable_content\": true,\n  \"collapse_id\": \"string\",\n  \"priority\": 1,\n  \"ttl\": 60,\n  \"send_after\": \"2026-01-01T09:00:00Z\",\n  \"delayed_option\": \"timezone\",\n  \"delivery_time_of_day\": \"string\",\n  \"template_id\": \"string\",\n  \"custom_data\": {},\n  \"email_subject\": \"string\",\n  \"email_body\": \"string\",\n  \"email_mjml\": \"string\",\n  \"email_preheader\": \"string\",\n  \"email_from_name\": \"string\",\n  \"email_from_address\": \"user@example.com\",\n  \"email_reply_to_address\": \"user@example.com\",\n  \"disable_email_click_tracking\": true,\n  \"sms_from\": \"string\",\n  \"sms_media_urls\": [\n    \"string\"\n  ],\n  \"disable_sms_link_shortening\": true,\n  \"whatsapp_template\": {\n    \"name\": \"string\",\n    \"language\": \"string\"\n  },\n  \"whatsapp_media\": {\n    \"type\": \"image\",\n    \"url\": \"string\"\n  },\n  \"whatsapp_interactive\": {\n    \"type\": \"button\"\n  },\n  \"rcs_card\": {},\n  \"rcs_suggestions\": [\n    {\n      \"type\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"rcs_content_sid\": \"string\",\n  \"rcs_content_variables\": {},\n  \"rcs_fallback_text\": {},\n  \"add_to_inbox\": true,\n  \"inbox_ttl\": 60,\n  \"frequency_cap_exempt\": true,\n  \"quiet_hours_exempt\": true,\n  \"one_per_user\": true,\n  \"throttle_rate_per_minute\": 0,\n  \"include_unsubscribed\": true,\n  \"name\": \"string\",\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\"\n}",
+              "raw": "{\n  \"app_id\": \"string\",\n  \"idempotency_key\": \"string\",\n  \"target\": {},\n  \"headings\": {},\n  \"contents\": {},\n  \"subtitle\": {},\n  \"url\": \"string\",\n  \"app_url\": \"string\",\n  \"data\": {},\n  \"buttons\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"big_picture\": \"string\",\n  \"ios_attachments\": {},\n  \"ios_sound\": \"string\",\n  \"ios_badge_type\": \"None\",\n  \"ios_badge_count\": 0,\n  \"ios_interruption_level\": \"passive\",\n  \"ios_category\": \"string\",\n  \"thread_id\": \"string\",\n  \"ios_relevance_score\": 0,\n  \"target_content_identifier\": \"string\",\n  \"android_channel_id\": \"string\",\n  \"android_group\": \"string\",\n  \"android_sound\": \"string\",\n  \"small_icon\": \"string\",\n  \"large_icon\": \"string\",\n  \"android_accent_color\": \"string\",\n  \"android_visibility\": 1,\n  \"ios_carousel\": [\n    {\n      \"url\": \"string\"\n    }\n  ],\n  \"android_live_update\": {\n    \"progress\": 0\n  },\n  \"voip\": true,\n  \"app_clip\": true,\n  \"chrome_web_icon\": \"string\",\n  \"chrome_web_image\": \"string\",\n  \"chrome_web_badge\": \"string\",\n  \"web_push_topic\": \"string\",\n  \"web_buttons\": [\n    {\n      \"id\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"require_interaction\": true,\n  \"content_available\": true,\n  \"mutable_content\": true,\n  \"collapse_id\": \"string\",\n  \"priority\": 1,\n  \"ttl\": 60,\n  \"send_after\": \"2026-01-01T09:00:00Z\",\n  \"delayed_option\": \"timezone\",\n  \"delivery_time_of_day\": \"string\",\n  \"template_id\": \"string\",\n  \"custom_data\": {},\n  \"email_subject\": \"string\",\n  \"email_body\": \"string\",\n  \"email_mjml\": \"string\",\n  \"email_preheader\": \"string\",\n  \"email_from_name\": \"string\",\n  \"email_from_address\": \"user@pushizo.com\",\n  \"email_reply_to_address\": \"user@pushizo.com\",\n  \"disable_email_click_tracking\": true,\n  \"sms_from\": \"string\",\n  \"sms_media_urls\": [\n    \"string\"\n  ],\n  \"disable_sms_link_shortening\": true,\n  \"whatsapp_template\": {\n    \"name\": \"string\",\n    \"language\": \"string\"\n  },\n  \"whatsapp_media\": {\n    \"type\": \"image\",\n    \"url\": \"string\"\n  },\n  \"whatsapp_interactive\": {\n    \"type\": \"button\"\n  },\n  \"rcs_card\": {},\n  \"rcs_suggestions\": [\n    {\n      \"type\": \"string\",\n      \"text\": \"string\"\n    }\n  ],\n  \"rcs_content_sid\": \"string\",\n  \"rcs_content_variables\": {},\n  \"rcs_fallback_text\": {},\n  \"add_to_inbox\": true,\n  \"inbox_ttl\": 60,\n  \"content_card\": {\n    \"type\": \"classic\"\n  },\n  \"frequency_cap_exempt\": true,\n  \"quiet_hours_exempt\": true,\n  \"one_per_user\": true,\n  \"throttle_rate_per_minute\": 0,\n  \"include_unsubscribed\": true,\n  \"name\": \"string\",\n  \"labels\": [\n    \"string\"\n  ],\n  \"category\": \"string\",\n  \"fallback_channel\": \"sms\",\n  \"form_factor\": \"phone\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -7912,6 +10910,353 @@
       ]
     },
     {
+      "name": "reverse-etl",
+      "item": [
+        {
+          "name": "Depodan içeri aktarımlar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Depodan içeri aktarımlar"
+          },
+          "response": []
+        },
+        {
+          "name": "İçeri aktarım oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "İçeri aktarım oluştur",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"target\": \"event\",\n  \"schedule\": \"every_5_minutes\",\n  \"source\": \"string\",\n  \"config\": {\n    \"account\": \"string\",\n    \"user\": \"string\",\n    \"database\": \"string\",\n    \"schema\": \"string\",\n    \"warehouse\": \"string\",\n    \"query\": \"string\",\n    \"mapping\": {\n      \"external_id_column\": \"string\"\n    }\n  },\n  \"credentials\": {\n    \"private_key\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kaydetmeden bağlantı testi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/test-connection",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                "test-connection"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kaydetmeden bağlantı testi",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"string\",\n  \"config\": {\n    \"account\": \"string\",\n    \"user\": \"string\",\n    \"database\": \"string\",\n    \"schema\": \"string\",\n    \"warehouse\": \"string\",\n    \"query\": \"string\",\n    \"mapping\": {\n      \"external_id_column\": \"string\"\n    }\n  },\n  \"credentials\": {\n    \"private_key\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "İçeri aktarım detayı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İçeri aktarım detayı"
+          },
+          "response": []
+        },
+        {
+          "name": "İçeri aktarımı güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İçeri aktarımı güncelle",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"schedule\": \"every_5_minutes\",\n  \"enabled\": true,\n  \"config\": {},\n  \"credentials\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "İçeri aktarımı sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İçeri aktarımı sil"
+          },
+          "response": []
+        },
+        {
+          "name": "Kayıtlı içeri aktarımın bağlantı testi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId/test",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId",
+                "test"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kayıtlı içeri aktarımın bağlantı testi"
+          },
+          "response": []
+        },
+        {
+          "name": "Şimdi içeri aktar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId",
+                "run"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Şimdi içeri aktar"
+          },
+          "response": []
+        },
+        {
+          "name": "İçeri aktarım geçmişi",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/reverse-etl/:syncId/runs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "reverse-etl",
+                ":syncId",
+                "runs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "syncId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İçeri aktarım geçmişi"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "sdk",
       "item": [
         {
@@ -8394,6 +11739,152 @@
           "response": []
         },
         {
+          "name": "Özellik bayraklarını değerlendir",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/feature-flags/evaluate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "feature-flags",
+                "evaluate"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Özellik bayraklarını değerlendir\n\nDeğerler uygulama kimliğini bilen herkesçe okunabilir. `subscription_id` için sahiplik kuralları PATCH ile aynıdır.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token_hash\": \"string\",\n  \"identity_hash\": \"string\",\n  \"subscription_id\": \"string\",\n  \"subject\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cihazın izleyeceği en yakın bölgeler",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/geofences",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences"
+              ],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "-90",
+                  "disabled": false
+                },
+                {
+                  "key": "lng",
+                  "value": "-180",
+                  "disabled": false
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "Cihazın izleyeceği en yakın bölgeler\n\nArka plan bölge izleme için; bölge adı dönmez.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "İşletim sisteminin bildirdiği bölge geçişleri",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/subscriptions/:subscriptionId/geofence-events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "subscriptions",
+                ":subscriptionId",
+                "geofence-events"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "subscriptionId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İşletim sisteminin bildirdiği bölge geçişleri\n\nKoordinat içermez. Konum rızası olmayan abonelikte yok sayılır. Sahiplik kuralları PATCH ile aynıdır.",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token_hash\": \"string\",\n  \"identity_hash\": \"string\",\n  \"events\": [\n    {\n      \"geofence_id\": \"string\",\n      \"transition\": \"enter\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Toplu olay bildirimi (en fazla 100)",
           "request": {
             "method": "POST",
@@ -8781,7 +12272,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"external_id\": \"string\",\n  \"identity_hash\": \"string\",\n  \"subscription_id\": \"string\",\n  \"token_hash\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"user@example.com\",\n  \"language\": \"string\"\n}",
+              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"external_id\": \"string\",\n  \"identity_hash\": \"string\",\n  \"subscription_id\": \"string\",\n  \"token_hash\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"user@pushizo.com\",\n  \"language\": \"string\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8945,7 +12436,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"client_message_id\": \"string\",\n  \"text\": \"string\",\n  \"option_id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"user@example.com\",\n  \"language\": \"string\",\n  \"page_url\": \"string\"\n}",
+              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"client_message_id\": \"string\",\n  \"text\": \"string\",\n  \"option_id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"user@pushizo.com\",\n  \"language\": \"string\",\n  \"page_url\": \"string\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -9181,7 +12672,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"client_message_id\": \"string\",\n  \"email\": \"user@example.com\",\n  \"name\": \"string\",\n  \"text\": \"string\",\n  \"language\": \"string\"\n}",
+              "raw": "{\n  \"visitor_id\": \"string\",\n  \"visitor_token\": \"string\",\n  \"client_message_id\": \"string\",\n  \"email\": \"user@pushizo.com\",\n  \"name\": \"string\",\n  \"text\": \"string\",\n  \"language\": \"string\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -9292,6 +12783,65 @@
               "variable": []
             },
             "description": "Cihaz için gösterilebilecek in-app mesajlar (tetikleri SDK değerlendirir)",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Gömülü yerleşim içeriği",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/placements/:key",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "placements",
+                ":key"
+              ],
+              "query": [
+                {
+                  "key": "subscription_id",
+                  "value": "string",
+                  "disabled": false
+                },
+                {
+                  "key": "token_hash",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "supports",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "key",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Gömülü yerleşim içeriği\n\nÖnceliğe göre sıralı; gösterim içerik çizilince `in-app/{id}/events` ile bildirilir.",
             "auth": {
               "type": "noauth"
             }
@@ -9511,6 +13061,128 @@
               ]
             },
             "description": "Okundu işaretle",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_id\": \"string\",\n  \"identity_hash\": \"string\",\n  \"token_hash\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "İçerik kartı akışı (sabitlenmiş, öncelik, yeni sırasıyla; abonelik kullanıcıya ait olmalı)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/users/:userId/cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "users",
+                ":userId",
+                "cards"
+              ],
+              "query": [
+                {
+                  "key": "subscription_id",
+                  "value": "string",
+                  "disabled": false
+                },
+                {
+                  "key": "identity_hash",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "token_hash",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "İçerik kartı akışı (sabitlenmiş, öncelik, yeni sırasıyla; abonelik kullanıcıya ait olmalı)",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kart olayı: impression (gösterim), click (tıklama) veya dismiss (kapatma)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sdk/v1/apps/:{appId}/users/:userId/cards/:itemId/:event",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sdk",
+                "v1",
+                "apps",
+                ":{appId}",
+                "users",
+                ":userId",
+                "cards",
+                ":itemId",
+                ":event"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "string"
+                },
+                {
+                  "key": "itemId",
+                  "value": "string"
+                },
+                {
+                  "key": "event",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kart olayı: impression (gösterim), click (tıklama) veya dismiss (kapatma)",
             "auth": {
               "type": "noauth"
             },
@@ -9933,6 +13605,190 @@
     {
       "name": "segments",
       "item": [
+        {
+          "name": "Bölgeler",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/geofences",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Bölgeler"
+          },
+          "response": []
+        },
+        {
+          "name": "Bölge oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/geofences",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Bölge oluştur\n\nKonum paylaşan abonelik bölgeye girip çıktığında `geofence_enter` ve `geofence_exit` olayları oluşur.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"lat\": -90,\n  \"lng\": -180,\n  \"radius_m\": 100,\n  \"cooldown_minutes\": 0,\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bölge ayrıntısı",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/geofences/:geofenceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences",
+                ":geofenceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "geofenceId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bölge ayrıntısı"
+          },
+          "response": []
+        },
+        {
+          "name": "Bölgeyi güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/geofences/:geofenceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences",
+                ":geofenceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "geofenceId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bölgeyi güncelle",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"lat\": -90,\n  \"lng\": -180,\n  \"radius_m\": 100,\n  \"cooldown_minutes\": 0,\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bölgeyi sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/geofences/:geofenceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "geofences",
+                ":geofenceId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "geofenceId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Bölgeyi sil"
+          },
+          "response": []
+        },
         {
           "name": "Segment listesi",
           "request": {
@@ -11230,6 +15086,11 @@
                   "disabled": true
                 },
                 {
+                  "key": "ip",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
                   "key": "tag",
                   "value": "string",
                   "disabled": true
@@ -11855,7 +15716,7 @@
           "response": []
         },
         {
-          "name": "Token ile abonelik güncelle (token_type: ios_push, android_push, hms_push, web_push, email, sms veya OneSignal adları iOSPush, AndroidPush, HuaweiPush, ChromePush, FirefoxPush, SafariPush, Email, SMS)",
+          "name": "Token ile abonelik güncelle (token_type: ios_push, android_push, hms_push, web_push, email, sms veya eski sağlayıcı adları iOSPush, AndroidPush, HuaweiPush, ChromePush, FirefoxPush, SafariPush, Email, SMS)",
           "request": {
             "method": "PATCH",
             "header": [
@@ -11893,7 +15754,7 @@
                 }
               ]
             },
-            "description": "Token ile abonelik güncelle (token_type: ios_push, android_push, hms_push, web_push, email, sms veya OneSignal adları iOSPush, AndroidPush, HuaweiPush, ChromePush, FirefoxPush, SafariPush, Email, SMS)",
+            "description": "Token ile abonelik güncelle (token_type: ios_push, android_push, hms_push, web_push, email, sms veya eski sağlayıcı adları iOSPush, AndroidPush, HuaweiPush, ChromePush, FirefoxPush, SafariPush, Email, SMS)",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"token\": \"string\",\n  \"device\": {},\n  \"status\": \"subscribed\",\n  \"test_device\": true,\n  \"test_device_name\": \"string\"\n}",
@@ -11992,6 +15853,567 @@
                 }
               }
             }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "verify",
+      "item": [
+        {
+          "name": "SMS doğrulama kodu gönder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/verify/sms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "verify",
+                "sms"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "SMS doğrulama kodu gönder",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"string\",\n  \"locale\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SMS doğrulama kodunu kontrol et",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/verify/sms/check",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "verify",
+                "sms",
+                "check"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "SMS doğrulama kodunu kontrol et",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"string\",\n  \"code\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "wallet",
+      "item": [
+        {
+          "name": "Wallet yapılandırması",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Wallet yapılandırması\n\nKimlik bilgisi geri okunamaz, yalnızca durum döner."
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet kimlik bilgilerini ayarla",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "config"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Wallet kimlik bilgilerini ayarla",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apple\": {\n    \"pass_type_id\": \"string\",\n    \"team_id\": \"string\",\n    \"certificate_pem\": \"string\",\n    \"private_key_pem\": \"string\",\n    \"wwdr_pem\": \"string\"\n  },\n  \"google\": {\n    \"issuer_id\": \"string\",\n    \"service_account_json\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet şablonları",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "templates"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Wallet şablonları"
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet şablonu oluştur",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "templates"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Wallet şablonu oluştur",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"string\",\n  \"name\": \"string\",\n  \"kind\": \"coupon\",\n  \"design\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"organization\": \"string\"\n  },\n  \"images\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet şablonu",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/templates/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "templates",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Wallet şablonu"
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet şablonunu güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/templates/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "templates",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Wallet şablonunu güncelle\n\nTasarım değişirse verilmiş kartlar da güncellenir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"status\": \"active\",\n  \"design\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"organization\": \"string\"\n  },\n  \"images\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet şablonunu sil",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/templates/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "templates",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Wallet şablonunu sil\n\nVerilmiş kartı olan şablon silinemez, arşivlenir."
+          },
+          "response": []
+        },
+        {
+          "name": "Verilmiş kartlar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/passes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "passes"
+              ],
+              "query": [
+                {
+                  "key": "template_id",
+                  "value": "string",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "description": "Verilmiş kartlar"
+          },
+          "response": []
+        },
+        {
+          "name": "Kart ver",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/passes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "passes"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "description": "Kart ver\n\nKullanıcılı kart şablon başına tektir; tekrar istek aynı kartı döndürür.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template_id\": \"string\",\n  \"external_id\": \"string\",\n  \"barcode_value\": \"string\",\n  \"values\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kart",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/passes/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "passes",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kart"
+          },
+          "response": []
+        },
+        {
+          "name": "Kartı güncelle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/passes/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "passes",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kartı güncelle\n\nCihazdaki kart arka planda yenilenir.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"barcode_value\": \"string\",\n  \"values\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Kartı iptal et",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/apps/:{appId}/wallet/passes/:id/void",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v1",
+                "apps",
+                ":{appId}",
+                "wallet",
+                "passes",
+                ":id",
+                "void"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Kartı iptal et\n\nGeri alınmaz; cihazdaki kart geçersiz görünür."
           },
           "response": []
         }
@@ -12130,7 +16552,7 @@
             "description": "Dışa aktarım oluştur (kimlik bilgisi şifreli saklanır, yanıtta dönmez)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"tables\": [\n    \"deliveries\"\n  ],\n  \"schedule\": \"hourly\",\n  \"destination\": \"string\",\n  \"config\": {\n    \"project_id\": \"string\",\n    \"dataset\": \"string\"\n  },\n  \"credentials\": {\n    \"service_account_json\": \"string\"\n  }\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"tables\": [\n    \"deliveries\"\n  ],\n  \"schedule\": \"every_15_minutes\",\n  \"destination\": \"string\",\n  \"config\": {\n    \"project_id\": \"string\",\n    \"dataset\": \"string\"\n  },\n  \"credentials\": {\n    \"service_account_json\": \"string\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -12211,7 +16633,7 @@
             "description": "Dışa aktarımı güncelle (ad, tablolar, zamanlama, etkin/duraklat, hedef ayarı, kimlik bilgisi)",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"string\",\n  \"tables\": [\n    \"deliveries\"\n  ],\n  \"schedule\": \"hourly\",\n  \"enabled\": true,\n  \"config\": {},\n  \"credentials\": {}\n}",
+              "raw": "{\n  \"name\": \"string\",\n  \"tables\": [\n    \"deliveries\"\n  ],\n  \"schedule\": \"every_15_minutes\",\n  \"enabled\": true,\n  \"config\": {},\n  \"credentials\": {}\n}",
               "options": {
                 "raw": {
                   "language": "json"
